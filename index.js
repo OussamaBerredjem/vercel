@@ -22,7 +22,7 @@ app.use(`/`, router);
 
 
 
-router.get('/commit', async (req, res) => {
+app.get('/commit', async (req, res) => {
     try {
         const { default: fetch } = await import('node-fetch'); // Use dynamic import()
         // Step 1: Create a new file on the local file system
