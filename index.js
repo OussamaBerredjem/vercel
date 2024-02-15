@@ -63,6 +63,11 @@ router.get("/", (req, res) => {
     });
   });
 
+router.get("/hy", (req, res) => {
+    res.json({
+      hello: "hi!"
+    });
+  });
 
 
 app.listen(port||process.env.PORT,()=>{
