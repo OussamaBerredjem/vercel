@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 // Define your GitHub credentials
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = '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';
 const REPO_OWNER = 'OussamaBerredjem';
 const REPO_NAME = 'api_upload_java';
 
