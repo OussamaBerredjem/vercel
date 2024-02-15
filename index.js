@@ -63,7 +63,7 @@ router.get("/", (req, res) => {
     });
   });
 
-router.get("/hy", (req, res) => {
+app.get("/hy", (req, res) => {
     res.json({
       hello: "hi!"
     });
