@@ -20,36 +20,7 @@ app.use(express.static('public'));
 
 app.use(`/`, router);
 
-async function commit(){
-    try {
-        const { default: fetch } = await import('node-fetch'); // Use dynamic import()
-        // Step 1: Create a new file on the local file system
-        fs.writeFileSync(filePath, fileContent);
 
-        // Step 2: Commit the file to GitHub using GitHub API
-        const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${filePath}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `token ${GITHUB_TOKEN}`
-            },
-            body: JSON.stringify({
-                message: 'Add example.txt via API',
-                content: Buffer.from(fileContent).toString('base64')
-            })
-        });
-
-        // Step 3: Check if the file was committed successfully
-        if (response.status === 201) {
-            console.log('File committed successfully!');
-        } else {
-            const responseData = await response.json();
-            console.error(responseData);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
 
 router.get('/commit', async (req, res) => {
     try {
@@ -92,16 +63,7 @@ router.get("/", (req, res) => {
     });
   });
 
-function update() {
-    const intervalInHours = 20;
-    const intervalInMilliseconds = intervalInHours * 60 * 60 * 1000;
-    
-    setInterval(async ()=>{
-        await commit();
-    },intervalInMilliseconds)
-}
 
-update()
 
 app.listen(port||process.env.PORT,()=>{
   console.log(port)
